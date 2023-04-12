@@ -23,10 +23,10 @@
                     <a class="page-link" href="#">{{ pagination.current_page }} of {{ pagination.last_page }}</a>
                 </li>
                 <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
-                    <a class="page-link" href="#" @click="getPosts(pagination.next_page_url)">></a>
+                    <a class="page-link" href="#" @click="getPosts(pagination.next_page_url)">{{ Next_page }}</a>
                 </li>
                 <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
-                    <a class="page-link" href="#" @click="getPosts(pagination.last_page_url)">>></a>
+                    <a class="page-link" href="#" @click="getPosts(pagination.last_page_url)">{{ Last_page }}</a>
                 </li>
             </ul>
         </nav> 
@@ -56,7 +56,9 @@
                 update: false,
                 post_id: '',
                 First_page: '<<',
-                Prev_page: '<'
+                Prev_page: '<',
+                Next_page: '>',
+                Last_page: '>>'
             };
         },
        
@@ -90,7 +92,7 @@
 
             addPost () {
                 if (this.update === false) {
-                    fetch('api/post', {
+                    fetch('api/posts', {
                         method: 'post',
                         body: JSON.stringify(this.post),
                         headers: {'content-type': 'application/json'}
@@ -102,7 +104,7 @@
                     })
                     .catch(err => console.log(err));
                 } else {
-                    fetch('api/post', {
+                    fetch('api/posts', {
                         method: 'put',
                         body: JSON.stringify(this.post),
                         headers: {'content-type': 'application/json'}
@@ -117,7 +119,7 @@
             },
             
             deletePost(id) {
-                fetch('api/post/' + id, {
+                fetch('api/posts/' + id, {
                     method: 'delete'
                 })
                 .then(responce => responce.json())

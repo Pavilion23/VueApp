@@ -17673,7 +17673,9 @@ __webpack_require__.r(__webpack_exports__);
       update: false,
       post_id: '',
       First_page: '<<',
-      Prev_page: '<'
+      Prev_page: '<',
+      Next_page: '>',
+      Last_page: '>>'
     };
   },
   created: function created() {
@@ -17706,7 +17708,7 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this2 = this;
       if (this.update === false) {
-        fetch('api/post', {
+        fetch('api/posts', {
           method: 'post',
           body: JSON.stringify(this.post),
           headers: {
@@ -17721,7 +17723,7 @@ __webpack_require__.r(__webpack_exports__);
           return console.log(err);
         });
       } else {
-        fetch('api/post', {
+        fetch('api/posts', {
           method: 'put',
           body: JSON.stringify(this.post),
           headers: {
@@ -17739,7 +17741,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deletePost: function deletePost(id) {
       var _this3 = this;
-      fetch('api/post/' + id, {
+      fetch('api/posts/' + id, {
         method: 'delete'
       }).then(function (responce) {
         return responce.json();
@@ -17892,7 +17894,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $options.getPosts($data.pagination.next_page_url);
     })
-  }, ">")], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.Next_page), 1 /* TEXT */)], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[{
       disabled: !$data.pagination.next_page_url
     }], "page-item"])
@@ -17902,7 +17904,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.getPosts($data.pagination.last_page_url);
     })
-  }, ">>")], 2 /* CLASS */)])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.posts, function (post) {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.Last_page), 1 /* TEXT */)], 2 /* CLASS */)])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.posts, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "card mb-2",
       key: post.id
@@ -17940,6 +17942,30 @@ var navBar = (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)();
 navBar.component('navbar', (__webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue")["default"]));
 navBar.component('post-list', (__webpack_require__(/*! ./components/PostList.vue */ "./resources/js/components/PostList.vue")["default"]));
 navBar.mount('#app');
+
+/*
+createApp({data() {return {counter: 0}},  mounted() {setInterval(() => {this.counter++}, 1000)}}).mount('#app');
+
+const AttributeBinding = {data() {return {message: 'Was loaded : ' + new Date().toLocaleString()}}};
+createApp(AttributeBinding).mount('#bind-attribute');
+
+const EventHandling = {data() {return {message: 'Hello, Vue !'}},
+    methods: {reversMessage() {this.message = this.message.split('').reverse().join('')}}};
+createApp(EventHandling).mount('#event-handling');
+
+createApp({data() {return {seen: true}}}).mount('#conditional-rendering');
+
+const ListRendering = {
+    data() {
+        return {todos: [{text: 'Learn JavaScrypt'},
+                    {text: 'Learn Vue'},
+                    {text: 'Build something awesome'}]}}};
+createApp(ListRendering).mount('#list-rendering');
+
+const LoadTest = createApp();
+//LoadTest.component('load-test', require('./components/Navbar.vue').default);  //default !!!!
+LoadTest.component('load-test', require('./Alert.vue').default);  //default !!!!
+LoadTest.mount('#test-load');*/
 
 /***/ }),
 
